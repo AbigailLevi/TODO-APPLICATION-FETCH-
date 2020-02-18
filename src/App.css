@@ -8,7 +8,8 @@ body{
   
 }
 .YOLO{
-  background-image: url("https://wallpapers.party/media/2019/04/864345.jpg");;
+  background-image: url("https://i.pinimg.com/736x/88/d9/6e/88d96ec033726aa79afe059e622a5f50.jpg");;
+  background-repeat: no-repeat;
   width: 38%;
   height: 700px;
   margin: auto;
@@ -20,15 +21,19 @@ body{
 .Type{
   font-size: 60px;
   font-family: serif;
-  color: rgb(190, 185, 185);
+  color: rgb(99, 97, 97);
 }
 .Abby{
   width: 50%;
   margin: auto;
   margin-top: 0px;
+  background-color: rgb(184, 182, 182);
 }
 .pain{
+  background-color: transparent;
+  color: whitesmoke;
   width: 50%;
   margin: auto;
+ margin-top: 10px;
 
 }
