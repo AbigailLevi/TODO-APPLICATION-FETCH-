@@ -6,26 +6,53 @@ const Todos = () => {
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
+        const fetchGetTodos = () => {
+            return fetch(url)
+                .then(res => res.json())
+                .then(res => {
+                    return res
+                })
+                .catch(err => console.log('error:' + err))
+        }
+        const fetchCreateUser = () => {
+            return fetch(url, {
+                method: 'POST',
+                body: JSON.stringify([{}]),
+                headers: { 'content.Type': 'application/json' }
+            })
+                .then(res => res.json())
+                .then(res => {
+                    return res
+                })
+                .catch(err => console.log('error:' + err))
+        }
+        const fetchUpdateTodos = () => {
+
+            const todosData = todos.map(todos => {
+                return { label: 'todos', done: false }
+            })
+            return fetch(url, {
+                method: 'PUT',
+                body: JSON.stringify(todosData),
+                headers: { 'content.Type': 'application/json' }
+            })
+                .then(res => res.json())
+                .then(res => {
+                    return res
+                })
+                .catch(err => console.log('error:' + err))
+        }
+        fetchGetTodos()
             .then(res => {
                 console.log('response:' + JSON.stringify(res))
                 if (res.msg) {
-                    fetch(url, {
-                        method: 'POST',
-                        body: JSON.stringify([{}]),
-                        headers: { 'Content-Type': 'application/json' }
-                    })
-                        .then(res => res.json())
+                    fetchCreateUser()
                         .then(res => console.log(res))
-                        .catch(err => console.log('error: ${err}'));
                 } else {
                     console.log('user exits, here is response:' + JSON.stringify(res));
                 }
             })
-            .catch(err => console.log(`error: ${err}`));
     }, [todos]);
-
     const deleteTodos = indexToDelete => {
         setTodos(prevTodos => {
             return prevTodos.filter((value, index) => {
