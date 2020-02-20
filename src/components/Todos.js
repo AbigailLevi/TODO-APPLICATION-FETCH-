@@ -27,7 +27,6 @@ const Todos = () => {
                 .catch(err => console.log('error:' + err))
         }
         const fetchUpdateTodos = () => {
-
             const todosData = todos.map(todos => {
                 return { label: 'todos', done: false }
             })
@@ -64,36 +63,39 @@ const Todos = () => {
 
 
     return (
-        <div className="YOLO">
-            <h1 className="Type">TODOS</h1>
+        <div className="row d-block">
+            <div className="YOLO col">
+                <h1 className="Type">TODOS</h1>
 
-            <div className="Zay input-group">
-                <input type="text" className="form-control" name={inputValue} value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder="Enter New To-Do" aria-label="Enter New To-Do" aria-describedby="button-addon2" />
-                <div className="input-group-append">
-                    <button className="btn btn-secondary" type="button" onClick={() => {
-                        setTodos(prevTodos => [
-                            ...prevTodos, inputValue
-                        ])
-                        setInputValue('')
-                    }
-                    }
-                    > Add</button>
+                <div className="Zay input-group">
+                    <input type="text" className="form-control" name={inputValue} value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder="Enter New To-Do" aria-label="Enter New To-Do" aria-describedby="button-addon2" />
+                    <div className="input-group-append">
+                        <button className="btn btn-secondary" type="button" onClick={() => {
+                            setTodos(prevTodos => [
+                                ...prevTodos, inputValue
+                            ])
+                            setInputValue('')
+                        }
+                        }
+                        > Add</button>
+                    </div>
                 </div>
             </div>
-
-            <ul className="list-group">
-                {todos.map((value, index) => {
-                    return <li className="Abby list-group-item d-flex justify-content-between align-items-center" key={index}>{value}
-                        <span type="button" onClick={() => {
-                            deleteTodos(index);
-                        }}
-                        >x</span>
-                    </li>
-                })}
-                <li className="pain list-group-item d-flex justify-content-between align-items-center">
-                    {todos.length} items
+            <div className="col">
+                <ul className="list-group">
+                    {todos.map((value, index) => {
+                        return <li className="Abby list-group-item d-flex justify-content-between align-items-center" key={index}>{value}
+                            <span type="button" onClick={() => {
+                                deleteTodos(index);
+                            }}
+                            >x</span>
+                        </li>
+                    })}
+                    <li className="pain list-group-item d-flex justify-content-between align-items-center">
+                        {todos.length} items
                  </li>
-            </ul>
+                </ul>
+            </div>
         </div>
     )
 }
