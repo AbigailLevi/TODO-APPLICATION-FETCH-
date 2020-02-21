@@ -1,5 +1,6 @@
 body {
-  background-image: url("https://wallpapers.party/media/2019/04/864345.jpg");
+background-image: url(https://wallup.net/wp-content/uploads/2018/10/04/85386-outer-space-planets-moon-earth-planet-sci-fi-stars.jpg);
+background-repeat: no-repeat;
 }
 .Zay {
   width: 50%;
@@ -8,9 +9,8 @@ body {
 }
 .YOLO {
   width: 38%;
-  height: 700px;
+  height: 150px;
   margin: auto;
-  padding-top: 40px;
   text-align: center;
   margin-top: 7%;
 }
@@ -20,9 +20,8 @@ body {
   color: whitesmoke;
 }
 .Abby {
-  width: 50%;
+ width: 30%;
   margin: auto;
-  margin-top: 0px;
   background-color: rgb(184, 182, 182);
 }
 .pain {

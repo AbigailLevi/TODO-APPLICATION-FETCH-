@@ -3,6 +3,7 @@ const url = 'https://assets.breatheco.de/apis/fake/todos/user/AbigailLevi';
 
 const Todos = () => {
     const [todos, setTodos] = useState([])
+    const [init, setInit] = useState(true)
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
@@ -40,18 +41,23 @@ const Todos = () => {
                     return res
                 })
                 .catch(err => console.log('error:' + err))
+        };
+
+        if (init === true) {
+            fetchGetTodos()
+                .then(res => {
+                    //console.log('response:' + JSON.stringify(res))
+                    if (res.msg) {
+                        fetchCreateUser()
+                            .then(res => console.log(res))
+                    } else {
+                        //console.log('user exits, here is response:' + JSON.stringify(res));
+                        setTodos(res.map(todo => todo.label))
+                    }
+                })
         }
-        fetchGetTodos()
-            .then(res => {
-                console.log('response:' + JSON.stringify(res))
-                if (res.msg) {
-                    fetchCreateUser()
-                        .then(res => console.log(res))
-                } else {
-                    console.log('user exits, here is response:' + JSON.stringify(res));
-                }
-            })
     }, [todos]);
+
     const deleteTodos = indexToDelete => {
         setTodos(prevTodos => {
             return prevTodos.filter((value, index) => {
@@ -64,7 +70,7 @@ const Todos = () => {
 
     return (
         <div className="row d-block">
-            <div className="YOLO col">
+            <div className="YOLO col-12">
                 <h1 className="Type">TODOS</h1>
 
                 <div className="Zay input-group">
