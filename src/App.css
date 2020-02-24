@@ -22,7 +22,7 @@ background-repeat: no-repeat;
 .Abby {
  width: 30%;
   margin: auto;
-  background-color: rgb(184, 182, 182);
+  background-image: linear-gradient(to right, rgb(99, 116, 212) , rgb(96, 183, 189));
 }
 .pain {
   background-color: transparent;

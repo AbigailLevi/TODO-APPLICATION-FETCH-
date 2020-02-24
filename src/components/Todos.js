@@ -4,7 +4,7 @@ const url = 'https://assets.breatheco.de/apis/fake/todos/user/AbigailLevi';
 const Todos = () => {
     const [todos, setTodos] = useState([])
     const [init, setInit] = useState(true)
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState('true');
 
     useEffect(() => {
         const fetchGetTodos = () => {
@@ -29,7 +29,7 @@ const Todos = () => {
         }
         const fetchUpdateTodos = () => {
             const todosData = todos.map(todos => {
-                return { label: 'todos', done: false }
+                return { label: 'todo', done: false }
             })
             return fetch(url, {
                 method: 'PUT',
@@ -44,18 +44,22 @@ const Todos = () => {
         };
 
         if (init === true) {
-            fetchGetTodos()
-                .then(res => {
-                    //console.log('response:' + JSON.stringify(res))
-                    if (res.msg) {
-                        fetchCreateUser()
-                            .then(res => console.log(res))
-                    } else {
-                        //console.log('user exits, here is response:' + JSON.stringify(res));
-                        setTodos(res.map(todo => todo.label))
-                    }
-                })
+            fetchGetTodos().then(res=> {
+                console.log("response: " + JSON.stringify(res));
+
+                if(res.msg) {
+                    console.log("user does not exits");
+                    fetchCreateUser().then(res=> console.log(res));
+                
+
+                }else{
+                    console.log("user exists, here is response:" + JSON.stringify(res));
+                    setTodos(res.map(todo=> todo.label));
+                   setInit(false)
+                }
+            })
         }
+         
     }, [todos]);
 
     const deleteTodos = indexToDelete => {
